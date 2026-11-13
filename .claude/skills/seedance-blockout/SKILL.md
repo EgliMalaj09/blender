@@ -6,7 +6,9 @@ description: Build Blender grey-box / colour-proxy blockouts with an exact anima
 # Seedance blockout
 
 Blender controls camera, timing and layout; Seedance 2.5 supplies the look.
-Full research: `reports/Blender blockouts for Seedance 2.5.md`. Worked example: `shots/shotA/`.
+Full research: `reports/Blender blockouts for Seedance 2.5.md`. User-facing loop: `WORKFLOW.md`.
+Templates: `shots/shotA/` (one move), `shots/shotB/` (9:16 product ad, cuts, translucent
+objects), `shots/shotC/` (two-person dialogue coverage, 10 cuts).
 
 ## Workflow
 
@@ -42,6 +44,24 @@ Full research: `reports/Blender blockouts for Seedance 2.5.md`. Worked example: 
   ≤15 s for multi-beat shots.
 - Blender 5.x: set `image_settings.media_type = "VIDEO"` before `file_format = "FFMPEG"`;
   joined objects keep the active object's origin (key the right Z).
+
+## Lessons from shots B and C
+
+- **Reference video in:** `ffprobe` for size/fps/length, `scdet=threshold=8` for cut times,
+  `fps=2,tile=4x4` contact sheets to read it. Write the shot table, confirm, then build.
+- **Cuts:** one camera per shot, `timeline_markers.new(...).camera = cam`. For different
+  locations, put each set 10 m apart and keep `clip_end` short.
+- **Dialogue coverage:** all cameras on one side of the A–B line (180° rule); OTS 50 mm,
+  close-ups 85 mm at ~1.1–1.4 m (closer turns the head sphere into a blob); tiny
+  `delta_location` keys every 6 frames give a handheld feel. Watch for axial angles where
+  one person hides the other.
+- **Translucent proxies** (bubbles, glass): material alpha < 1 + `surface_render_method =
+  "BLENDED"`, `color_type = "MATERIAL"`. Workbench renders it.
+- **Check stills as one tiled sheet** (`ffmpeg -pattern_type glob ... tile=`), fix, repeat.
+  Stills dirs are git-ignored; commit MP4s, sheets, build.py, prompt.md.
+- **Moderation:** no realistic face images (even AI ones). Avoid "photoreal live-action",
+  "consistent faces", "lip sync"; keep dialogue mild. On "violates our policies", bisect:
+  set only → add people → add dialogue.
 
 ## Prompt rules (Seedance 2.5)
 

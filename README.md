@@ -6,7 +6,12 @@ render it as a reference clip, and let Seedance 2.5 render the look.
 - `reports/Blender blockouts for Seedance 2.5.md`: research playbook and fact-check of the source note
 - `.claude/skills/seedance-blockout/`: project skill with the rules Claude Code follows here
 - `.claude/skills/camera-cinematography/`: lens and camera-move guide (from arjun988/blender-skills, MIT)
-- `shots/shotA/`: first test shot: `build.py`, rendered `renders/*.mp4`, and `prompt.md`
+- **`WORKFLOW.md`: the reusable step-by-step loop (start here)**
+- `shots/shotA/`: one continuous dolly move (16:9, 5 s)
+- `shots/shotB/`: shampoo ad in a bubble world rebuilt from a reference video (9:16, 11 s, 4 cuts)
+- `shots/shotC/`: café conversation coverage test, 7 angles + 3 quick inserts (16:9, 15 s), tested prompt
+
+Each shot folder has `build.py`, rendered `renders/*.mp4` and `prompt.md`.
 
 ## Quick start (local Claude Code + Blender MCP)
 
